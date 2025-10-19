@@ -1,0 +1,190 @@
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Nunito:wght@300;400;600;700;800;900&family=Russo+One&family=Spartan:wght@700;800;900&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family:  "Nunito", sans-serif;
+    margin: 0 32px;
+}
+
+.expense-tracker {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem;
+    gap: 2rem;
+    align-items: center;
+}
+
+main {
+    max-width: 900px;
+    margin-inline: auto;
+    margin-top: 4rem;
+}
+
+main h1 {
+    padding-inline: 2rem;
+}
+
+.form form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form {
+    width: 100%;
+}
+
+.input-label-container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.input-label-container label {
+    margin-bottom: 4px;
+}
+
+.input-label-container + .input-label-container {
+    margin-top: 1rem;
+}
+
+.input-label-container input, .input-label-container select, .form button {
+    padding: 8px;
+}
+
+.form-btn {
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+table input, table select {
+    border: none;
+    outline: none;
+    margin-right: 4px;
+}
+
+thead {
+    width: 115px;
+}
+
+tbody tr {
+    cursor: pointer;
+}
+
+.expense-table {
+    width: 100%;
+    border-collapse: collapse;
+    /* align-self: flex-start; */
+    /* margin-top: ; */
+}
+
+.expense-table th, td {
+    padding: 2px 8px;
+    justify-content: center;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.category-selector select {
+    max-width: 95px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.error {
+    font-size: 12px;
+    color: red;
+    position: absolute;
+    top: 100%;
+}
+
+.amount {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.change-color {
+    background-color: transparent;
+}
+
+.sorting-buttons {
+    display: flex;
+    gap: 4px;
+}
+
+.third {
+    display: flex;
+    justify-content: space-between;
+    max-width: 70%;
+    margin-inline: auto;
+    /* padding: 2px; */
+    flex-wrap: wrap;
+}
+
+.sorting-buttons button {
+    padding: 2px 4px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.context-menu {
+    display: flex;
+    flex-direction: column;
+    max-width: 130px;
+    border-radius: 4px;
+    box-shadow: 0px 0px 2px 1px rgb(213, 208, 208);
+    position: absolute;
+    top: 50%;
+    background-color: white;
+}
+
+.context-menu p {
+    font-weight: 700;
+    font-size: 14px;
+    /* text-align: center; */
+    cursor: pointer;
+    padding: 2px 5px;
+}
+
+.context-menu p:hover {
+    background-color: skyblue;
+    color: white;
+}
+
+@media (max-width: 965px) {
+    .expense-tracker {
+        flex-direction: column;
+        gap: 6rem;
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        margin-inline: 0;
+    }
+
+    main h1 {
+        padding: 1rem;
+        font-size: x-large;
+    }
+
+    main {
+        margin-top: 2rem;
+    }
+
+    .expense-tracker {
+        padding: 1rem;
+    }
+
+    .expense-table {
+       flex-shrink: 1;
+    }
+}
