@@ -16,7 +16,7 @@ export default function ContextMenu({
   }
 
   function editRow(e) {
-    const tableData = JSON.parse(localStorage.getItem("tableData"));
+    const tableData = JSON.parse(localStorage.getItem("tableData") ?? []);
     const [rowToEdit] = tableData.filter((data) => data.id === rowId);
 
     console.log(rowToEdit);
@@ -38,7 +38,7 @@ export default function ContextMenu({
   function deleteRow(e) {
     // console.log(rowId);
     setShowContextMenu(false);
-    const remainingData = JSON.parse(localStorage.getItem("tableData")).filter(
+    const remainingData = JSON.parse(localStorage.getItem("tableData") ?? []).filter(
       (data) => data.id !== rowId
     );
 
