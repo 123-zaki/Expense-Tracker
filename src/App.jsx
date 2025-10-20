@@ -7,10 +7,10 @@ import ExpenseTable from "../Components/ExpenseTable";
 
 function App() {
   const [data, setData] = useState(
-    JSON.parse(localStorage.getItem("tableData") ?? [])
+    JSON.parse(localStorage.getItem("tableData")) ?? []
   );
   const [tableData, setTableData] = useState(
-    JSON.parse(localStorage.getItem("tableData") ?? [])
+    JSON.parse(localStorage.getItem("tableData")) ?? []
   );
   const [expense, setExpense] = useState({
     title: "",
@@ -22,7 +22,7 @@ function App() {
   const inputRef = useRef(null);
 
   const [filteredTableData, setFilteredTabledata] = useState(
-    JSON.parse(localStorage.getItem("tableData") ?? [])
+    JSON.parse(localStorage.getItem("tableData")) ?? []
   );
 
   // console.log(JSON.parse(localStorage.getItem('tableData')))

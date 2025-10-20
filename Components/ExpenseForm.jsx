@@ -149,7 +149,7 @@ export default function ExpenseForm({
         ])
       );
 
-      setFilteredTabledata(JSON.parse(localStorage.getItem("tableData") ?? []));
+      setFilteredTabledata(JSON.parse(localStorage.getItem("tableData")) ?? []);
       setExpense({
         title: "",
         category: "",
