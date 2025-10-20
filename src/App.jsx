@@ -65,25 +65,17 @@ function App() {
   // console.log("Data: ", data);
 
   useEffect(() => {
-    // try {
-    //   const raw = localStorage.getItem("tableData");
-    //   if (!raw) return;
-    //   const parsed = JSON.parse(raw);
-    //   if (!Array.isArray(parsed)) {
-    //     localStorage.setItem("tableData", JSON.stringify([]));
-    //   }
-    // } catch (err) {
-    //   // corrupted JSON -> reset
-    //   localStorage.setItem("tableData", JSON.stringify([]));
-    // }
-
-    // inspect
-    console.log(localStorage.getItem("tableData"));
-
-    // if it's malformed or not a JSON array, remove or reset it:
-    localStorage.removeItem("tableData");
-    // or set a safe empty array:
-    localStorage.setItem("tableData", "[]");
+    try {
+      const raw = localStorage.getItem("tableData");
+      if (!raw) return;
+      const parsed = JSON.parse(raw);
+      if (!Array.isArray(parsed)) {
+        localStorage.setItem("tableData", JSON.stringify([]));
+      }
+    } catch (err) {
+      // corrupted JSON -> reset
+      localStorage.setItem("tableData", JSON.stringify([]));
+    }
   }, []);
 
   function formatCurrency(n) {
