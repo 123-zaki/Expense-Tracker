@@ -14,7 +14,10 @@ function App() {
       const parsed = JSON.parse(raw);
       return Array.isArray(parsed) ? parsed : [];
     } catch (err) {
-      console.warn("readTableDataSafe: invalid tableData in localStorage, resetting to []", err);
+      console.warn(
+        "readTableDataSafe: invalid tableData in localStorage, resetting to []",
+        err
+      );
       return [];
     }
   }
@@ -27,7 +30,7 @@ function App() {
     amount: "",
     id: "",
   });
-  const [btnText, setBtnText] = useState('Add');
+  const [btnText, setBtnText] = useState("Add");
   const inputRef = useRef(null);
 
   const [filteredTableData, setFilteredTabledata] = useState(
@@ -60,6 +63,20 @@ function App() {
   // }, []);
 
   // console.log("Data: ", data);
+
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem("tableData");
+      if (!raw) return;
+      const parsed = JSON.parse(raw);
+      if (!Array.isArray(parsed)) {
+        localStorage.setItem("tableData", JSON.stringify([]));
+      }
+    } catch (err) {
+      // corrupted JSON -> reset
+      localStorage.setItem("tableData", JSON.stringify([]));
+    }
+  }, []);
 
   function formatCurrency(n) {
     const num = Number(n) || 0;
