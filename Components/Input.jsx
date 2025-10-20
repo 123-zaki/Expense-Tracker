@@ -1,6 +1,9 @@
 import React from 'react'
 
-export default function Input({label, type, placeholder, id, value, onChange, error, ref = null}) {
+const Input = React.forwardRef(function Input(
+  { label, type, placeholder, id, value, onChange, error },
+  ref
+) {
   return (
     <div className="input-label-container">
           <label htmlFor={id}>{label}</label>
@@ -21,4 +24,6 @@ export default function Input({label, type, placeholder, id, value, onChange, er
           }
         </div>
   )
-}
+})
+
+export default Input

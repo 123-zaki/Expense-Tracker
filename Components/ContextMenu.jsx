@@ -32,6 +32,7 @@ export default function ContextMenu({
     setBtnText("Save");
 
     // console.dir(inputRef);
+    console.log("Editing...")
     inputRef.current.focus();
     setShowContextMenu(false);
   }
