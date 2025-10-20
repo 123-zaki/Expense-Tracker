@@ -1,4 +1,5 @@
 import React from "react";
+import { readTableData, writeTableData } from "../src/utils/localStorageHelpers";
 
 export default function ContextMenu({
   menuPosition,
@@ -16,8 +17,8 @@ export default function ContextMenu({
   }
 
   function editRow(e) {
-    const tableData = JSON.parse(localStorage.getItem("tableData")) ?? [];
-    const [rowToEdit] = tableData.filter((data) => data.id === rowId);
+    const tableData = readTableData();
+    const [rowToEdit] = tableData.filter((data) => data.id === rowId) || [];
 
     console.log(rowToEdit);
 
@@ -38,13 +39,10 @@ export default function ContextMenu({
   function deleteRow(e) {
     // console.log(rowId);
     setShowContextMenu(false);
-    const remainingData = (JSON.parse(localStorage.getItem("tableData")) ?? []).filter(
-      (data) => data.id !== rowId
-    );
+    const remainingData = readTableData().filter((data) => data.id !== rowId);
 
     setData(remainingData);
-
-    localStorage.setItem("tableData", JSON.stringify(remainingData));
+    writeTableData(remainingData);
     setFilteredTabledata(remainingData);
     setBtnText("Add");
     setExpense({

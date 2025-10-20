@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import Input from "./Input";
 import Select from "./Select";
+import { readTableData, writeTableData } from "../src/utils/localStorageHelpers";
 
 export default function ExpenseForm({
   data,
@@ -121,11 +122,11 @@ export default function ExpenseForm({
         ...prevState,
         { ...expense, id },
       ]);
-      localStorage.setItem(
-        "tableData",
-        JSON.stringify([...data, { ...expense, id }])
-      );
-      setFilteredTabledata(JSON.parse(localStorage.getItem("tableData") ?? []));
+      // write safely using helper (use current persisted value and append)
+      const current = readTableData();
+      const newArr = [...current, { ...expense, id }];
+      writeTableData(newArr);
+      setFilteredTabledata(newArr);
       setExpense({
         title: "",
         category: "",
@@ -141,15 +142,11 @@ export default function ExpenseForm({
         ...prevState.filter((exp) => exp.id !== delRowId),
         { ...expense },
       ]);
-      localStorage.setItem(
-        "tableData",
-        JSON.stringify([
-          ...data.filter((el) => el.id !== delRowId),
-          { ...expense },
-        ])
-      );
-
-      setFilteredTabledata(JSON.parse(localStorage.getItem("tableData")) ?? []);
+      // replace persisted value with updated array
+      const current = readTableData();
+      const newArr = [...current.filter((el) => el.id !== delRowId), { ...expense }];
+      writeTableData(newArr);
+      setFilteredTabledata(newArr);
       setExpense({
         title: "",
         category: "",

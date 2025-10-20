@@ -6,12 +6,21 @@ import ExpenseForm from "../Components/ExpenseForm";
 import ExpenseTable from "../Components/ExpenseTable";
 
 function App() {
-  const [data, setData] = useState(
-    JSON.parse(localStorage.getItem("tableData")) ?? []
-  );
-  const [tableData, setTableData] = useState(
-    JSON.parse(localStorage.getItem("tableData")) ?? []
-  );
+  // safe reader for localStorage tableData to avoid runtime errors when stored value is malformed
+  function readTableDataSafe() {
+    try {
+      const raw = localStorage.getItem("tableData");
+      if (!raw) return [];
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (err) {
+      console.warn("readTableDataSafe: invalid tableData in localStorage, resetting to []", err);
+      return [];
+    }
+  }
+
+  const [data, setData] = useState(readTableDataSafe());
+  const [tableData, setTableData] = useState(readTableDataSafe());
   const [expense, setExpense] = useState({
     title: "",
     category: "",
@@ -22,7 +31,7 @@ function App() {
   const inputRef = useRef(null);
 
   const [filteredTableData, setFilteredTabledata] = useState(
-    JSON.parse(localStorage.getItem("tableData")) ?? []
+    readTableDataSafe()
   );
 
   // console.log(JSON.parse(localStorage.getItem('tableData')))
