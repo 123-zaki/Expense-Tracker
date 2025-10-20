@@ -83,6 +83,9 @@ export default function ExpenseTable({
     });
   }
 
+  // ensure filteredTableData is always an array before sorting/mapping
+  const rows = (Array.isArray(filteredTableData) ? [...filteredTableData] : []).sort(sortingCallback);
+
   return (
     <>
       {showContextMenu && (
@@ -178,7 +181,7 @@ export default function ExpenseTable({
           </tr>
         </thead>
         <tbody>
-          {([...filteredTableData].sort(sortingCallback)).map((r, i) => (
+          {rows.map((r, i) => (
             <tr
               key={r.id}
               onContextMenu={(e) => {
