@@ -65,6 +65,7 @@ function App() {
   // console.log("Data: ", data);
 
   useEffect(() => {
+    console.log("Deploy...")
     try {
       const raw = localStorage.getItem("tableData");
       if (!raw) return;
