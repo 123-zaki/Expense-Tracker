@@ -178,7 +178,7 @@ export default function ExpenseTable({
           </tr>
         </thead>
         <tbody>
-          {([...filteredTableData].sort(sortingCallback) ?? []).map((r, i) => (
+          {([...filteredTableData].sort(sortingCallback)).map((r, i) => (
             <tr
               key={r.id}
               onContextMenu={(e) => {
